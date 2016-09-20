@@ -1,3 +1,7 @@
+/*
+  GENERAL
+*/
+
 body,
 div,
 ul,
@@ -14,18 +18,12 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
-.clear-fix {
-  overflow: auto;
-}
-
-.education-entry,
-.work-entry,
-.project-entry {
-  padding: 0 5%;
+body {
+  font-size: 18px;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 3rem;
   color: #f5a623;
   line-height: 48px;
   display: inline;
@@ -33,7 +31,7 @@ h1 {
 
 h2 {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 2rem;
   color: #999;
   line-height: 29px;
   padding: 10px;
@@ -41,14 +39,14 @@ h2 {
 
 h3 {
   font-style: italic;
-  font-size: 20px;
+  font-size: 1.3rem;
   color: #000;
   line-height: 22px;
 }
 
 h4 {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1.1rem;
   color: #4a4a4a;
   line-height: 17px;
 }
@@ -58,25 +56,18 @@ h3,
 h4,
 h5 {
   padding:10px 5%;
-
 }
 
-
-.date-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: left;
+ul {
+  list-style-type: none;
 }
 
-.location-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: right;
+img {
+  padding: 10px;
+}
 
+span {
+  padding: 5px;
 }
 
 p {
@@ -92,16 +83,34 @@ a {
   display: block;
 }
 
-.welcome-message {
-  font-style: italic;
-  font-size: 18px;
-  color: #f3f3f3;
-  line-height: 28px;
+.clear-fix {
+  overflow: auto;
 }
 
-#skills-h3 {
-  color: #f5ae23;
-  display: none;
+.contacts {
+  font-size: 14px;
+}
+
+.education-entry,
+.work-entry,
+.project-entry {
+  padding: 0 5%;
+}
+
+.date-text {
+  font-style: italic;
+  font-size: 14px;
+  color: #999;
+  line-height: 16px;
+  float: left;
+}
+
+.location-text {
+  font-style: italic;
+  font-size: 14px;
+  color: #999;
+  line-height: 16px;
+  float: right;
 }
 
 .orange {
@@ -113,7 +122,6 @@ a {
 }
 
 .white-text {
-  font-weight: bold;
   color: #fff;
 }
 
@@ -125,11 +133,6 @@ a {
 
 .dark-gray {
   background-color: #4a4a4a;
-}
-
-/* TODO: Replace with image later */
-#header {
-  background-color: #484848;
 }
 
 .flex-box {
@@ -152,8 +155,32 @@ a {
   padding: 2.5% 5%;
 }
 
-ul {
-  list-style-type: none;
+.content-section {
+  padding: 1rem;
+}
+
+/*
+  HEADER
+*/
+
+#header {
+  background-color: #3e97b3;
+}
+
+/*
+  BIO
+*/
+
+.welcome-message {
+  font-style: italic;
+  font-size: 18px;
+  color: #f3f3f3;
+  line-height: 28px;
+}
+
+#skills-h3 {
+  color: #f5ae23;
+  display: none;
 }
 
 .biopic {
@@ -163,16 +190,44 @@ ul {
   display: none;
 }
 
-img {
-  padding: 10px;
+/*
+  PROJECT
+*/
+
+.project-entry img {
+  max-width: 100%;
+  width: 25vw;
 }
 
-span {
-  padding: 5px;
+/*
+  EDUCATION
+*/
+
+.education-entry em {
+  font-size: .9rem;
 }
+
+/*
+  FOOTER
+*/
 
 #lets-connect {
   text-align: center;
+}
+
+/*
+  GOOGLE MAP
+*/
+#map {
+  display: block;
+  height: 100%;
+}
+
+#mapDiv {
+  height: 400px;
+  width: 100%;
+  padding: 1rem 0;
+  overflow-y: hidden;
 }
 
 /* Media queries to handle various device widths */
@@ -199,18 +254,6 @@ span {
   .welcome-message {
     display: none;
   }
-}
-
-#map {
-  display: block;
-  height: 100%;
-  margin: 0 5%;
-}
-
-#mapDiv {
-  height: 400px;
-  width: 100%;
-  padding-bottom: 5%;
 }
 
 @media only screen and (min-width: 750px) {
