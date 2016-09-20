@@ -115,19 +115,19 @@ var work = {
         title: "Programmer Analyst",
         location: "Los Angeles, CA",
         dates: "April 2012-June 2016",
-        description: ""
+        description: "Programmed business to consumer facing web application that allowed insurance agents to provide customers wih quotes for various bonds. Developed internal web application for company bail department that issues bail bonds on company paper."
     }, {
         employer: "American Travel Solutions",
         title: "Software Developer",
         location: "Calabasas, CA",
         dates: "September 2010-April 2012",
-        description: ""
+        description: "Built features to improve customer experience for CheapAir.com."
     }, {
         employer: "UCSB Student Information Systems & Technology",
         title: "Student Application Developer",
         location: "Santa Barbara, CA",
         dates: "August 2008-June 2010",
-        description: ""
+        description: "Performed various maintenance tasks and helped create web pages for UCSB financial aid website."
     }],
     display: function() {
         var $workExperience = $('#workExperience');
