@@ -2,6 +2,11 @@ function replaceData(placeHolderString, value) {
     return placeHolderString.replace('%data%', value);
 }
 
+function enableMap() {
+    $('#mapDiv').append(googleMap);
+}
+enableMap();
+
 var bio = {
     name: "Brian Quach",
     role: "Full Stack Web Developer",
@@ -136,7 +141,7 @@ var work = {
             location = replaceData(HTMLworkLocation, job.location);
             description = replaceData(HTMLworkDescription, job.description);
             fullTitle = employer + title;
-            $workstart.append(fullTitle, dates, location, description);
+            $workStart.append(fullTitle, dates, location, description);
             $workExperience.append($workStart);
         });
     }
