@@ -20,7 +20,7 @@ var bio = {
     },
     welcomeMessage: "Welcome to my resume! Churning code one bit at a time.",
     skills: ["Programming", "Piano", "Running"],
-    biopic: "https://avatars1.githubusercontent.com/u/1524544?v=3&s=466",
+    biopic: "images/bq.jpeg",
     display: function() {
         var $header = $('#header');
         var $topContacts = $('#topContacts');
@@ -152,22 +152,22 @@ var projects = {
         title: "Book Catalog App",
         dates: "April 2017",
         description: "Inspired by my love for reading, this book catalog web application was built using the Flask framework in Python. Combining Flask, SQL Alchemy, and WTForms provided an extremely helpful groundwork for developing a CRUD based web application. Coupled with Authentication via OAuth and data storage via PostgreSQL, I was able to create a content management system, albeit a simple one, with login and data persistence.  The book catalog app also provides a RESTful API to query for books in JSON and XML formats. In addition to developing the back-end, I enjoyed putting together the front-end using the Boostrap framework.",
-        images: ["https://s3.amazonaws.com/accredible_api_evidence_items/previews/140998/large/1463548905280?1463551046"]
+        images: ["images/book-catalog.png"]
     }, {
         title: "Five Card Poker API",
         dates: "July 2017",
         description: "Two player Five-Card Poker game API with endpoints that allows anyone to develop a front-end for the game. Game features include adding players, new games, email notifications, player ranking, and game history. Using Google App Engine (GAE) with API Explorer was extremely helpful to debug and test the game before deploying to the GAE platform. A new concept I learned about was NoSQL databases; Google Cloud Datastore NoSQL database is used in the application to store and retrieve game data.",
-        images: ["https://s3.amazonaws.com/accredible_api_evidence_items/previews/140999/large/1467951142596?1467953540"]
+        images: ["images/game-api.png"]
     }, {
         title: "Linux Server Configuration",
         dates: "August 2017",
         description: "Installed and configure required software to turn a baseline Ubuntu Amazon Web Services server into a fully functional web application server. Apache Web Server with mod_wsgi and PostgreSQL database server used to serve Book Catalog Application from a previous project. Configurations include firewall to block all traffic except for HTTP, SSH, and NTP; NTP used to keep server clock synchronized over a network; SSH used to access server; HTTP used to serve hosted application.  The web server was secured further by disabling root login and implementing fail2ban to ban malicious IP addresses. Server monitoring application Glance was also installed for easy server resource tracking.  Navigating this project has helped me learn a great deal about Linux and appreciate its \"everything is a file\" characteristic!",
-        images: ["https://s3.amazonaws.com/accredible_api_evidence_items/previews/162765/large/1467842617248?1467842810"]
+        images: ["images/linux-server.png"]
     }, {
         title: "Swiss-Tournament API",
         dates: "February 2017",
         description: "Swiss-Tournment Tracking API used to track game outcomes that supports these features: player registration, multiple tournaments, byes, swiss-pairing, ties, tie breaker by opponent match wins, player standings, and rematch prevention. Virtual Box and Vagrant were used for speeding up the setup time by hosting a virtual environment installed with the required tools to test and run the tournament API. Using PostgreSQL and Python as the back-end, the tournament API comes complete with functionality test cases; functionality test cases helped keep code integrity and provided regression testing.",
-        images: ["https://s3.amazonaws.com/accredible_api_evidence_items/previews/70050/large/1446101403010?1446101385"]
+        images: ["images/tournament-api.png"]
     }],
     display: function() {
         var $projects = $('#projects');
