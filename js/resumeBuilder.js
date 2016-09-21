@@ -1,5 +1,9 @@
-function replaceData(placeHolderString, value) {
-  return placeHolderString.replace('%data%', value);
+function replaceData(placeHolderString, value, url) {
+  var s = placeHolderString.replace('%data%', value);
+  if (url) {
+    s = s.replace('#', url);
+  }
+  return s;
 }
 
 function enableMap() {
@@ -78,7 +82,7 @@ var education = {
 
     this.schools.forEach(function(school) {
       $schoolStart = $(HTMLschoolStart);
-      name = replaceData(HTMLschoolName, school.name);
+      name = replaceData(HTMLschoolName, school.name, school.url);
       degree = replaceData(HTMLschoolDegree, school.degree);
       location = replaceData(HTMLschoolLocation, school.location);
       dates = replaceData(HTMLschoolDates, school.dates);
@@ -99,9 +103,9 @@ var education = {
     this.onlineCourses.forEach(function(course) {
       $schoolStart = $(HTMLschoolStart);
       degree = replaceData(HTMLonlineTitle, course.title);
-      name = replaceData(HTMLonlineSchool, course.school);
+      name = replaceData(HTMLonlineSchool, course.school, course.url);
       dates = replaceData(HTMLonlineDates, course.dates);
-      url = replaceData(HTMLonlineURL, course.url);
+      url = replaceData(HTMLonlineURL, course.url, course.url);
       schoolEntryTitle = degree + name;
       $schoolStart.append(schoolEntryTitle, dates, url);
       $education.append($schoolStart);
@@ -115,19 +119,22 @@ var work = {
     title: "Programmer Analyst",
     location: "Los Angeles, CA",
     dates: "April 2012-June 2016",
-    description: "Programmed business to consumer facing web application that allowed insurance agents to provide customers wih quotes for various bonds. Developed internal web application for company bail department that issues bail bonds on company paper."
+    description: "Programmed business to consumer facing web application that allowed insurance agents to provide customers wih quotes for various bonds. Developed internal web application for company bail department that issues bail bonds on company paper.",
+    url: "http://www.tmhcc.com/DivisionsProducts/TokioMarineHCC-SuretyGroup/SuretyGroupHome/tabid/648/language/en-US/Default.aspx"
   }, {
     employer: "American Travel Solutions",
     title: "Software Developer",
     location: "Calabasas, CA",
     dates: "September 2010-April 2012",
-    description: "Built features to improve customer experience for CheapAir.com."
+    description: "Built features to improve customer experience for CheapAir.com.",
+    url: "https://www.cheapair.com/"
   }, {
     employer: "UCSB Student Information Systems & Technology",
     title: "Student Application Developer",
     location: "Santa Barbara, CA",
     dates: "August 2008-June 2010",
-    description: "Performed various maintenance tasks and helped create web pages for UCSB financial aid website."
+    description: "Performed various maintenance tasks and helped create web pages for UCSB financial aid website.",
+    url: "http://sist.sa.ucsb.edu/"
   }],
   display: function() {
     var $workExperience = $('#workExperience');
@@ -135,7 +142,7 @@ var work = {
 
     this.jobs.forEach(function(job) {
       $workStart = $(HTMLworkStart);
-      employer = replaceData(HTMLworkEmployer, job.employer);
+      employer = replaceData(HTMLworkEmployer, job.employer, job.url);
       title = replaceData(HTMLworkTitle, job.title);
       dates = replaceData(HTMLworkDates, job.dates);
       location = replaceData(HTMLworkLocation, job.location);
@@ -152,22 +159,26 @@ var projects = {
     title: "Book Catalog App",
     dates: "April 2017",
     description: "Inspired by my love for reading, this book catalog web application was built using the Flask framework in Python. Combining Flask, SQL Alchemy, and WTForms provided an extremely helpful groundwork for developing a CRUD based web application. Coupled with Authentication via OAuth and data storage via PostgreSQL, I was able to create a content management system, albeit a simple one, with login and data persistence.  The book catalog app also provides a RESTful API to query for books in JSON and XML formats. In addition to developing the back-end, I enjoyed putting together the front-end using the Boostrap framework.",
-    images: ["images/book-catalog.png"]
+    images: ["images/book-catalog.png"],
+    url: "https://profiles.udacity.com/u/brianquach"
   }, {
     title: "Five Card Poker API",
     dates: "July 2017",
     description: "Two player Five-Card Poker game API with endpoints that allows anyone to develop a front-end for the game. Game features include adding players, new games, email notifications, player ranking, and game history. Using Google App Engine (GAE) with API Explorer was extremely helpful to debug and test the game before deploying to the GAE platform. A new concept I learned about was NoSQL databases; Google Cloud Datastore NoSQL database is used in the application to store and retrieve game data.",
-    images: ["images/game-api.png"]
+    images: ["images/game-api.png"],
+    url: "https://profiles.udacity.com/u/brianquach"
   }, {
     title: "Linux Server Configuration",
     dates: "August 2017",
     description: "Installed and configure required software to turn a baseline Ubuntu Amazon Web Services server into a fully functional web application server. Apache Web Server with mod_wsgi and PostgreSQL database server used to serve Book Catalog Application from a previous project. Configurations include firewall to block all traffic except for HTTP, SSH, and NTP; NTP used to keep server clock synchronized over a network; SSH used to access server; HTTP used to serve hosted application.  The web server was secured further by disabling root login and implementing fail2ban to ban malicious IP addresses. Server monitoring application Glance was also installed for easy server resource tracking.  Navigating this project has helped me learn a great deal about Linux and appreciate its \"everything is a file\" characteristic!",
-    images: ["images/linux-server.png"]
+    images: ["images/linux-server.png"],
+    url: "https://profiles.udacity.com/u/brianquach"
   }, {
     title: "Swiss-Tournament API",
     dates: "February 2017",
     description: "Swiss-Tournment Tracking API used to track game outcomes that supports these features: player registration, multiple tournaments, byes, swiss-pairing, ties, tie breaker by opponent match wins, player standings, and rematch prevention. Virtual Box and Vagrant were used for speeding up the setup time by hosting a virtual environment installed with the required tools to test and run the tournament API. Using PostgreSQL and Python as the back-end, the tournament API comes complete with functionality test cases; functionality test cases helped keep code integrity and provided regression testing.",
-    images: ["images/tournament-api.png"]
+    images: ["images/tournament-api.png"],
+    url: "https://profiles.udacity.com/u/brianquach"
   }],
   display: function() {
     var $projects = $('#projects');
@@ -175,7 +186,7 @@ var projects = {
 
     this.projects.forEach(function(project) {
       $projectStart = $(HTMLprojectStart);
-      title = replaceData(HTMLprojectTitle, project.title);
+      title = replaceData(HTMLprojectTitle, project.title, project.url);
       dates = replaceData(HTMLprojectDates, project.dates);
       description = replaceData(HTMLprojectDescription, project.description);
       $projectStart.append(title, dates, description);
