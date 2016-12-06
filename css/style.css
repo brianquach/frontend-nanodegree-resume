@@ -83,6 +83,10 @@ a {
   display: block;
 }
 
+.hide {
+  display: none !important;
+}
+
 .clear-fix {
   overflow: auto;
 }

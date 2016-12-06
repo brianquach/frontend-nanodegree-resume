@@ -6,155 +6,7 @@ function replaceData(placeHolderString, value, url) {
   return s;
 }
 
-function enableMap() {
-  $('#mapDiv').append(googleMap);
-}
-enableMap();
-
-var bio = {
-  name: "Brian Quach",
-  role: "Full Stack Web Developer",
-  contacts: {
-    mobile: "626.628.4009",
-    email: "13rianquach@gmail.com",
-    github: "https://www.github.com/brianquach",
-    twitter: "https://twitter.com/bkq88",
-    blog: "http://www.bkquach.com",
-    location: "West Covina, CA"
-  },
-  welcomeMessage: "Welcome to my resume! Churning code one bit at a time.",
-  skills: ["Programming", "Piano", "Running"],
-  biopic: "images/bq.jpeg",
-  display: function() {
-    var $header = $('#header');
-    var $topContacts = $('#topContacts');
-    var $footerContacts = $('#footerContacts');
-
-    var name = replaceData(HTMLheaderName, this.name);
-    var role = replaceData(HTMLheaderRole, this.role);
-    var mobile = replaceData(HTMLmobile, this.contacts.mobile);
-    var email = replaceData(HTMLemail, this.contacts.email);
-    var github = replaceData(HTMLgithub, this.contacts.github);
-    var twitter = replaceData(HTMLtwitter, this.contacts.twitter);
-    var blog = replaceData(HTMLblog, this.contacts.blog);
-    var location = replaceData(HTMLlocation, this.contacts.location);
-    var biopic = replaceData(HTMLbioPic, this.biopic);
-    var welcomeMessage = replaceData(HTMLwelcomeMsg, this.welcomeMessage);
-
-    $header.prepend(name, role);
-    $header.append(biopic, welcomeMessage, HTMLskillsStart);
-    $topContacts.append(mobile, email, github, twitter, location, blog);
-    $footerContacts.append(mobile, email, github, twitter, location, blog);
-
-    var $skills = $('#skills');
-    this.skills.forEach(function(skill) {
-      var listItem = replaceData(HTMLskills, skill);
-      $skills.append(listItem);
-    });
-  }
-};
-
-var education = {
-  schools: [{
-    name: "University of California, Santa Barbara",
-    location: "Santa Barbara, CA",
-    degree: "Bachelor of Science",
-    majors: ["Computer Engineering"],
-    dates: "June 2010",
-    url: "http://www.ucsb.edu/"
-  }, {
-    name: "Covina High School",
-    location: "Covina, CA",
-    degree: "High School Diploma",
-    majors: [],
-    dates: "June 2006",
-    url: "http://www.covinahigh.net/"
-  }],
-  onlineCourses: [{
-    title: "Full Stack Web Developer Nanodegree",
-    school: "Udacity",
-    dates: "July 2016",
-    url: "http://www.udacity.com"
-  }],
-  display: function() {
-    var name, location, degree, majors, dates, url, $schoolStart, schoolEntryTitle;
-    var $education = $('#education');
-
-    this.schools.forEach(function(school) {
-      $schoolStart = $(HTMLschoolStart);
-      name = replaceData(HTMLschoolName, school.name, school.url);
-      degree = replaceData(HTMLschoolDegree, school.degree);
-      location = replaceData(HTMLschoolLocation, school.location);
-      dates = replaceData(HTMLschoolDates, school.dates);
-      schoolEntryTitle = name + degree;
-      majors = '';
-      school.majors.forEach(function(major) {
-        majors += major + ' ';
-      });
-      majors = replaceData(HTMLschoolMajor, majors.trim());
-      $schoolStart.append(schoolEntryTitle, dates, location, majors);
-      $education.append($schoolStart);
-    });
-
-    if (this.onlineCourses.length) {
-      $education.append(HTMLonlineClasses);
-    }
-
-    this.onlineCourses.forEach(function(course) {
-      $schoolStart = $(HTMLschoolStart);
-      degree = replaceData(HTMLonlineTitle, course.title);
-      name = replaceData(HTMLonlineSchool, course.school, course.url);
-      dates = replaceData(HTMLonlineDates, course.dates);
-      url = replaceData(HTMLonlineURL, course.url, course.url);
-      schoolEntryTitle = degree + name;
-      $schoolStart.append(schoolEntryTitle, dates, url);
-      $education.append($schoolStart);
-    });
-  }
-};
-
-var work = {
-  jobs: [{
-    employer: "HCC Surety Group",
-    title: "Programmer Analyst",
-    location: "Los Angeles, CA",
-    dates: "April 2012-June 2016",
-    description: "Programmed business to consumer facing web application that allowed insurance agents to provide customers wih quotes for various bonds. Developed internal web application for company bail department that issues bail bonds on company paper.",
-    url: "http://www.tmhcc.com/DivisionsProducts/TokioMarineHCC-SuretyGroup/SuretyGroupHome/tabid/648/language/en-US/Default.aspx"
-  }, {
-    employer: "American Travel Solutions",
-    title: "Software Developer",
-    location: "Calabasas, CA",
-    dates: "September 2010-April 2012",
-    description: "Built features to improve customer experience for CheapAir.com.",
-    url: "https://www.cheapair.com/"
-  }, {
-    employer: "UCSB Student Information Systems & Technology",
-    title: "Student Application Developer",
-    location: "Santa Barbara, CA",
-    dates: "August 2008-June 2010",
-    description: "Performed various maintenance tasks and helped create web pages for UCSB financial aid website.",
-    url: "http://sist.sa.ucsb.edu/"
-  }],
-  display: function() {
-    var $workExperience = $('#workExperience');
-    var employer, title, location, dates, description, $workStart, fullTitle;
-
-    this.jobs.forEach(function(job) {
-      $workStart = $(HTMLworkStart);
-      employer = replaceData(HTMLworkEmployer, job.employer, job.url);
-      title = replaceData(HTMLworkTitle, job.title);
-      dates = replaceData(HTMLworkDates, job.dates);
-      location = replaceData(HTMLworkLocation, job.location);
-      description = replaceData(HTMLworkDescription, job.description);
-      fullTitle = employer + title;
-      $workStart.append(fullTitle, dates, location, description);
-      $workExperience.append($workStart);
-    });
-  }
-};
-
-var projects = {
+var projectsModel = {
   projects: [{
     title: "Book Catalog App",
     dates: "April 2017",
@@ -179,12 +31,208 @@ var projects = {
     description: "Swiss-Tournment Tracking API used to track game outcomes that supports these features: player registration, multiple tournaments, byes, swiss-pairing, ties, tie breaker by opponent match wins, player standings, and rematch prevention. Virtual Box and Vagrant were used for speeding up the setup time by hosting a virtual environment installed with the required tools to test and run the tournament API. Using PostgreSQL and Python as the back-end, the tournament API comes complete with functionality test cases; functionality test cases helped keep code integrity and provided regression testing.",
     images: ["images/tournament-api.png"],
     url: "https://profiles.udacity.com/u/brianquach"
-  }],
-  display: function() {
-    var $projects = $('#projects');
-    var $projectStart, title, dates, description;
+  }]
+};
 
-    this.projects.forEach(function(project) {
+var workModel = {
+  jobs: [{
+    employer: "HCC Surety Group",
+    title: "Programmer Analyst",
+    location: "Los Angeles, CA",
+    dates: "April 2012-June 2016",
+    description: "Programmed business to consumer facing web application that allowed insurance agents to provide customers wih quotes for various bonds. Developed internal web application for company bail department that issues bail bonds on company paper.",
+    url: "http://www.tmhcc.com/DivisionsProducts/TokioMarineHCC-SuretyGroup/SuretyGroupHome/tabid/648/language/en-US/Default.aspx"
+  }, {
+    employer: "American Travel Solutions",
+    title: "Software Developer",
+    location: "Calabasas, CA",
+    dates: "September 2010-April 2012",
+    description: "Built features to improve customer experience for CheapAir.com.",
+    url: "https://www.cheapair.com/"
+  }, {
+    employer: "UCSB Student Information Systems & Technology",
+    title: "Student Application Developer",
+    location: "Santa Barbara, CA",
+    dates: "August 2008-June 2010",
+    description: "Performed various maintenance tasks and helped create web pages for UCSB financial aid website.",
+    url: "http://sist.sa.ucsb.edu/"
+  }]
+};
+
+var educationModel = {
+  schools: [{
+    name: "University of California, Santa Barbara",
+    location: "Santa Barbara, CA",
+    degree: "Bachelor of Science",
+    majors: ["Computer Engineering"],
+    dates: "June 2010",
+    url: "http://www.ucsb.edu/"
+  }, {
+    name: "Covina High School",
+    location: "Covina, CA",
+    degree: "High School Diploma",
+    majors: [],
+    dates: "June 2006",
+    url: "http://www.covinahigh.net/"
+  }],
+  onlineCourses: [{
+    title: "Full Stack Web Developer Nanodegree",
+    school: "Udacity",
+    dates: "July 2016",
+    url: "http://www.udacity.com"
+  }]
+};
+
+var bioModel = {
+  name: "Brian Quach",
+  role: "Full Stack Web Developer",
+  contacts: {
+    mobile: "626.628.4009",
+    email: "13rianquach@gmail.com",
+    github: "https://www.github.com/brianquach",
+    twitter: "https://twitter.com/bkq88",
+    blog: "http://www.bkquach.com",
+    location: "West Covina, CA"
+  },
+  welcomeMessage: "Welcome to my resume! Churning code one bit at a time.",
+  skills: ["Programming", "Piano", "Running"],
+  biopic: "images/bq.jpeg"
+};
+
+var bioView = {
+  init: function() {
+    this.$header = $('#header');
+    this.$topContacts = $('#topContacts');
+    this.$footerContacts = $('#footerContacts');
+    this.$letsConnect = $('#lets-connect');
+
+    this.render();
+  },
+  render: function() {
+    var data = resumeController.getBioData();
+
+    var name = replaceData(HTMLheaderName, data.name);
+    var role = replaceData(HTMLheaderRole, data.role);
+    var mobile = replaceData(HTMLmobile, data.contacts.mobile);
+    var email = replaceData(HTMLemail, data.contacts.email);
+    var github = replaceData(HTMLgithub, data.contacts.github);
+    var twitter = replaceData(HTMLtwitter, data.contacts.twitter);
+    var blog = replaceData(HTMLblog, data.contacts.blog);
+    var location = replaceData(HTMLlocation, data.contacts.location);
+    var biopic = replaceData(HTMLbioPic, data.biopic);
+    var welcomeMessage = replaceData(HTMLwelcomeMsg, data.welcomeMessage);
+
+    this.$header.prepend(name, role);
+    this.$header.append(biopic, welcomeMessage, HTMLskillsStart);
+    this.$topContacts.append(mobile, email, github, twitter, location, blog);
+    this.$footerContacts.append(mobile, email, github, twitter, location, blog);
+
+    var $skills = $('#skills');
+    var listItem;
+    data.skills.forEach(function(skill) {
+      listItem = replaceData(HTMLskills, skill);
+      $skills.append(listItem);
+    });
+
+    if (document.getElementsByClassName('flex-item').length === 0) {
+      this.$topContacts.addClass('hide');
+      this.$letsConnect.addClass('hide');
+    }
+
+    if (document.getElementsByTagName('h1').length === 0) {
+      this.$header.addClass('hide');
+    }
+  }
+};
+
+var educationView = {
+  init: function() {
+    this.$education = $('#education');
+
+    this.render();
+  },
+  render: function() {
+    var name, location, degree, majors, dates, url, $schoolStart, schoolEntryTitle;
+    var data = resumeController.getEducationData();
+
+    data.schools.forEach(function(school) {
+      $schoolStart = $(HTMLschoolStart);
+      name = replaceData(HTMLschoolName, school.name, school.url);
+      degree = replaceData(HTMLschoolDegree, school.degree);
+      location = replaceData(HTMLschoolLocation, school.location);
+      dates = replaceData(HTMLschoolDates, school.dates);
+      schoolEntryTitle = name + degree;
+      majors = '';
+      school.majors.forEach(function(major) {
+        majors += major + ' ';
+      });
+      majors = replaceData(HTMLschoolMajor, majors.trim());
+      $schoolStart.append(schoolEntryTitle, dates, location, majors);
+      educationView.$education.append($schoolStart);
+    });
+
+    if (data.onlineCourses.length) {
+      this.$education.append(HTMLonlineClasses);
+    }
+
+    data.onlineCourses.forEach(function(course) {
+      $schoolStart = $(HTMLschoolStart);
+      degree = replaceData(HTMLonlineTitle, course.title);
+      name = replaceData(HTMLonlineSchool, course.school, course.url);
+      dates = replaceData(HTMLonlineDates, course.dates);
+      url = replaceData(HTMLonlineURL, course.url, course.url);
+      schoolEntryTitle = degree + name;
+      $schoolStart.append(schoolEntryTitle, dates, url);
+      educationView.$education.append($schoolStart);
+    });
+
+    if (document.getElementsByClassName('education-entry').length === 0) {
+      this.$education.addClass('hide');
+    }
+  }
+};
+
+var workView = {
+  init: function() {
+    this.$workExperience = $('#workExperience');
+
+    this.render();
+  },
+  render: function() {
+    var employer, title, location, dates, description, $workStart, fullTitle;
+    var $workExperience = this.$workExperience;
+    var data = resumeController.getWorkData();
+
+    data.jobs.forEach(function(job) {
+      $workStart = $(HTMLworkStart);
+      employer = replaceData(HTMLworkEmployer, job.employer, job.url);
+      title = replaceData(HTMLworkTitle, job.title);
+      dates = replaceData(HTMLworkDates, job.dates);
+      location = replaceData(HTMLworkLocation, job.location);
+      description = replaceData(HTMLworkDescription, job.description);
+      fullTitle = employer + title;
+      $workStart.append(fullTitle, dates, location, description);
+      $workExperience.append($workStart);
+    });
+
+    if (document.getElementsByClassName('work-entry').length === 0) {
+      this.$workExperience.addClass('hide');
+    }
+  }
+};
+
+var projectsView = {
+  init: function() {
+    this.$projects = $('#projects');
+
+    this.render();
+  },
+  render: function() {
+    var $projects = this.$projects;
+    var $projectStart, title, dates, description;
+    var data = resumeController.getProjectsData();
+
+    data.projects.forEach(function(project) {
       $projectStart = $(HTMLprojectStart);
       title = replaceData(HTMLprojectTitle, project.title, project.url);
       dates = replaceData(HTMLprojectDates, project.dates);
@@ -198,10 +246,52 @@ var projects = {
 
       $projects.append($projectStart);
     });
+
+    if (document.getElementsByClassName('project-entry').length === 0) {
+      this.$projects.addClass('hide');
+    }
   }
 };
 
-bio.display();
-education.display();
-work.display();
-projects.display();
+var mapView = {
+    init: function() {
+      this.$mapDiv = $('#mapDiv');
+
+      this.render();
+    },
+    render: function() {
+      this.$mapDiv.append(googleMap);
+
+      if (document.getElementById('map') === null) {
+        this.$mapDiv.addClass('hide');
+      }
+    }
+};
+
+var resumeController = {
+  init: function() {
+    this.bioModel = bioModel;
+    this.educationModel = educationModel;
+    this.workModel = workModel;
+    this.projectsModel = projectsModel;
+
+    bioView.init();
+    educationView.init();
+    workView.init();
+    projectsView.init();
+    mapView.init();
+  },
+  getBioData: function() {
+    return this.bioModel;
+  },
+  getEducationData: function() {
+    return this.educationModel;
+  },
+  getWorkData: function() {
+    return this.workModel;
+  },
+  getProjectsData: function() {
+    return this.projectsModel;
+  }
+};
+resumeController.init();
