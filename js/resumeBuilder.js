@@ -253,21 +253,6 @@ var projectsView = {
   }
 };
 
-var mapView = {
-    init: function() {
-      this.$mapDiv = $('#mapDiv');
-
-      this.render();
-    },
-    render: function() {
-      this.$mapDiv.append(googleMap);
-
-      if (document.getElementById('map') === null) {
-        this.$mapDiv.addClass('hide');
-      }
-    }
-};
-
 var resumeController = {
   init: function() {
     this.bioModel = bioModel;
